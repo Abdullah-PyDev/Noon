@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Scrollbar removals of horizontal items for clean presentation */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive iframe adjustments */
+html, body {
+  scroll-behavior: smooth;
+  background-color: #f8fafc;
+}
+
+/* Print utilities for printing electronic invoice receipts smoothly */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #product-detail-modal-overlay, #product-detail-modal-overlay * {
+    visibility: hidden;
+  }
+  #product-detail-modal-overlay {
+    background: none !important;
+    backdrop-filter: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  /* Show only the invoice dialog if present */
+  div[class*="fixed"][class*="z-50"] div[class*="bg-white"] {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  div[class*="fixed"][class*="z-50"] div[class*="bg-white"] * {
+    visibility: visible;
+  }
+}
